@@ -1,0 +1,71 @@
+#Minimize the heights
+Given an array arr[] denoting heights of N towers and a positive integer K.
+
+For each tower, you must perform exactly one of the following operations exactly once.
+
+Increase the height of the tower by K
+Decrease the height of the tower by K
+Find out the minimum possible difference between the height of the shortest and tallest towers after you have modified each tower.
+
+You can find a slight modification of the problem here.
+Note: It is compulsory to increase or decrease the height by K for each tower. After the operation, the resultant array should not contain any negative integers.
+
+Example 1:
+
+Input:
+K = 2, N = 4
+Arr[] = {1, 5, 8, 10}
+Output:
+5
+Explanation:
+The array can be modified as 
+{1+k, 5-k, 8-k, 10-k} = {3, 3, 6, 8}. 
+The difference between 
+the largest and the smallest is 8-3 = 5.
+
+code:
+#User function Template for python3
+
+class Solution:
+    def getMinDiff(self, arr, n, k):
+        # code here
+#         Initially maxHeight = arr[n – 1] = 15
+#             minHeight = arr[0] = 1
+#             ans = maxHeight – minHeight = 15 – 1 = 14
+
+# At i = 1
+
+# minHeight = min(arr[0] + k, arr[i] – k) = min(1 + 6, 10 – 6) = 4
+# maxHeight = max(arr[i – 1] + k, arr[n – 1] – k) = max(1 + 6, 15 – 6) = 9
+# ans = min(ans, maxHeight – minHeight) = min(14, 9 – 4) = 5 => ans = 5
+        arr.sort()
+        maxHeight=arr[n-1]
+        minHeight=arr[0]
+        ans=maxHeight-minHeight
+        
+        for i in range(n):
+            minHeight = min(arr[0]+k, arr[i]-k)
+            maxHeight = max(arr[i-1]+k, arr[n-1]-k) if i>0 else arr[n-1]-k
+            
+            if minHeight<0:
+                continue
+            ans=min(ans, maxHeight-minHeight)
+            
+        return ans
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__':
+    tc = int(input())
+    while tc > 0:
+        k = int(input())
+        n = int(input())
+        arr = list(map(int, input().strip().split()))
+        ob = Solution()
+        ans = ob.getMinDiff(arr, n, k)
+        print(ans)
+        tc -= 1
+
+# } Driver Code Ends
