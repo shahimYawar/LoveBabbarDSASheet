@@ -1,0 +1,48 @@
+Given an array arr[] and an integer K where K is smaller than size of array, the task is to find the Kth smallest element in the given array. It is given that all array elements are distinct.
+
+Note :-  l and r denotes the starting and ending index of the array.
+
+Example 1:
+
+Input:
+N = 6
+arr[] = 7 10 4 3 20 15
+K = 3
+L=0 R=5
+
+Output : 7
+Explanation :
+3rd smallest element in the given 
+array is 7.
+
+Code:
+#User function Template for python3
+
+class Solution:
+    def kthSmallest(self,arr, l, r, k):
+        '''
+        arr : given array
+        l : starting index of the array i.e 0
+        r : ending index of the array i.e size-1
+        k : find kth smallest element and return using this function
+        '''
+        arr.sort()
+        return arr[k-1]
+
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+#contributed by RavinderSinghPB
+if __name__ == '__main__': 
+    import random 
+    t=int(input())
+    for tcs in range(t):
+        n=int(input())
+        arr=list(map(int,input().strip().split()))
+        k=int(input())
+        ob=Solution()
+        print(ob.kthSmallest(arr, 0, n-1, k))
+        
+# } Driver Code Ends
